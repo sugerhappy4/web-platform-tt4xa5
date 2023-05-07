@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>発表チーム</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      function presen() {
+        const TEAM_NAME = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        const TEAM_NUMBER = TEAM_NAME.length;
+        let team = Math.floor(Math.random() * TEAM_NUMBER);
+
+        document.getElementById('result').innerHTML =
+          '<p>結果：発表チームは <span>' +
+          TEAM_NAME[team] +
+          '</span> です。</p>';
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a href="/" aria-current="page">Home</a>
+    </nav>
+
+    <h1>発表チーム決定プログラム</h1>
+
+    <div id="result"><p>発表チームは....</p></div>
+
+    <p>
+      <input type="button" value="決定" class="button" onClick="presen();" />
+    </p>
+  </body>
+</html>

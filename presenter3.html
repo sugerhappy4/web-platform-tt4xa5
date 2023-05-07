@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>発表チーム（複数・カレンダー）</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      function presen() {
+        const TEAM_NAME = ['1', '2', '3', '4', '5', '6', '7', '8'];
+        const TEAM_NUMBER = TEAM_NAME.length;
+        let presen_num = document.getElementById('presen_num').value;
+
+        // 入力チェック
+        if (
+          isNaN(presen_num) === true ||
+          presen_num < 1 ||
+          presen_num > TEAM_NAME.length
+        ) {
+          document.getElementById('result').innerHTML =
+            'チーム数は１から' + TEAM_NAME.length + 'までを入力してください';
+          return;
+        }
+
+        let flag = new Array(TEAM_NUMBER); // 選択状態
+
+        // 選択状態の初期化　0:未選択　1:選択
+        for (i = 0; i < TEAM_NUMBER; i++) {
+          flag[i] = 0;
+        }
+
+        // メッセージ
+        let msg = '結果：発表チームは<br>';
+
+        // 発表チーム選択
+        for (i = 0; i < presen_num; i++) {
+          let team;
+          while (true) {
+            team = Math.floor(Math.random() * TEAM_NUMBER);
+            if (flag[team] == 0) {
+              flag[team] = 1;
+              break;
+            }
+          }
+
+          msg += '<p><span>' + TEAM_NAME[team] + '</span></p>';
+        }
+
+        // メッセージ出力
+        document.getElementById('result').innerHTML = msg;
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a href="/" aria-current="page">Home</a>
+    </nav>
+
+    <h1>発表チーム決定プログラム</h1>
+
+    <p>発表チーム数<input type="text" value="1" id="presen_num" /></p>
+    <div id="result"><p>発表チームは....</p></div>
+
+    <p>
+      <input type="button" value="決定" class="button" onClick="presen();" />
+    </p>
+  </body>
+</html>
